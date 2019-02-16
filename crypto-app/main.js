@@ -1,6 +1,8 @@
+require('electron-reload')(__dirname)
 const {app, BrowserWindow, Menu} = require('electron')
 const path = require('path')
 const url = require('url')
+const shell = require('electron').shell
 
 let win
 
@@ -10,13 +12,13 @@ function createWindow () {
 
   // and load the index.html of the app.
   win.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
+    pathname: path.join(__dirname, 'src/index.html'),
     protocol: 'file:',
     slashes: true
   }))
 
   // Open the DevTools.
-  win.webContents.openDevTools()
+  //win.webContents.openDevTools()
 
   // Emitted when the window is closed.
   win.on('closed', () => {
@@ -30,11 +32,26 @@ function createWindow () {
   var menu = Menu.buildFromTemplate([
     {
         label: 'Menu',
-        submenu: [
-            {label:'Adjust Notification Value'},
-            {label:'CoinMarketCap'},
-            {label:'Exit'}
+            submenu: [
+              {label:'Adjust Notification Value'},
+              {
+                  label:'CoinMarketCap',
+                  click() { 
+                      shell.openExternal('http://coinmarketcap.com')
+                  } ,
+                  accelerator: 'CmdOrCtrl+Shift+C'
+              },
+              {type:'separator'},  // Add this
+              {
+                  label:'Exit', 
+                  click() { 
+                      app.quit() 
+                  } 
+              }
         ]
+    },
+    {
+        label: 'Info'
     }
   ])
   Menu.setApplicationMenu(menu); 
