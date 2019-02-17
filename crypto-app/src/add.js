@@ -7,3 +7,4 @@ closeBtn.addEventListener('click', function (event) {
     var window = remote.getCurrentWindow();
     window.close();
 })
+// meow

@@ -12,6 +12,8 @@
     "electron": "4.0.5",
     "electron-reload": "^1.4.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "axios": "^0.18.0"
+  },
   "description": ""
 }
