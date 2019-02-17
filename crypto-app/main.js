@@ -1,4 +1,4 @@
-require('electron-reload')(__dirname)
+if (process.env.NODE_ENV === 'development') { require('electron-reload')(__dirname) }
 const {app, BrowserWindow, Menu} = require('electron')
 const path = require('path')
 const url = require('url')
